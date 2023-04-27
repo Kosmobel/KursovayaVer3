@@ -3,6 +3,7 @@
 #include "submenu.h"
 #include "menuitem.h"
 #include "vuzbase.h"
+#include <algorithm>
 
 
 using namespace std;
@@ -145,13 +146,13 @@ void vuzBase::printresult(LinkedList* personList) {
 }
 
 void vuzBase::sortByAge(LinkedList* personList) {
-	//Node* current = personList->head;
+	Node* current = personList->head;
 	int size = 3;
 
-	Node* left = personList->head;
-	Node* right = personList->head->next;
+	Node* begin = personList->head;
+	Node* begin_temp = personList->head;
 	
-	while (left->next) {                
+	/*while (left->next) {
 		while (right) {              
 			if ((left->data->getAge()) < (right->data->getAge())) {
 				Node* temp = left;              
@@ -163,25 +164,40 @@ void vuzBase::sortByAge(LinkedList* personList) {
 		left = left->next;                            
 		right = left->next;                            
 	}
-
-
-
-	/*while (current != nullptr) {
+	while (current != nullptr) {
 		size++;
 		current = current->next;
-	}
+	}*/
 	for (int i = 0; i < size; i++) {
 		for (int j = 0; j < size; j++) {
 			if (begin->next != nullptr) {
 				if (begin->data->getAge() < begin->next->data->getAge()) {
-					Node* temp = begin->next;
-					begin = begin->next;
-					begin = temp;
+					Node* temp = begin;
+					begin->data = begin->next->data;
+					begin->next->data = temp->data;
 				}
 			}
+			begin->data = begin_temp->data;
 		}
-	}*/
+	}
+	/*bool swapped;
+	Node* left;
+	Node* right = nullptr;
+	Node* begin = personList->head;
+	do {
+		swapped = false;
+		left = begin;
 
-
+		while (left->next != right) {
+			if (begin->data->getAge() > begin->next->data->getAge()) {
+				Node* temp = left;
+				left = right;
+				right = temp;
+				swapped = 1;
+			}
+			left = left->next;
+		}
+		right = left;
+	} while (swapped);*/
 	this->showPersonList();
 }
