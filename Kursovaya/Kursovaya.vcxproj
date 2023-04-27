@@ -130,12 +130,15 @@
     <ClCompile Include="Kursovaya.cpp" />
     <ClCompile Include="menu.cpp" />
     <ClCompile Include="menuitem.cpp" />
+    <ClCompile Include="node.cpp" />
     <ClCompile Include="submenu.cpp" />
     <ClCompile Include="vuzbase.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="menu.h" />
     <ClInclude Include="menuitem.h" />
+    <ClInclude Include="node.h" />
+    <ClInclude Include="person.h" />
     <ClInclude Include="submenu.h" />
     <ClInclude Include="vuzbase.h" />
   </ItemGroup>

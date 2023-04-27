@@ -30,6 +30,9 @@
     <ClCompile Include="vuzbase.cpp">
       <Filter>Исходные файлы</Filter>
     </ClCompile>
+    <ClCompile Include="node.cpp">
+      <Filter>Исходные файлы</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="menu.h">
@@ -42,6 +45,12 @@
       <Filter>Исходные файлы</Filter>
     </ClInclude>
     <ClInclude Include="vuzbase.h">
+      <Filter>Исходные файлы</Filter>
+    </ClInclude>
+    <ClInclude Include="person.h">
+      <Filter>Исходные файлы</Filter>
+    </ClInclude>
+    <ClInclude Include="node.h">
       <Filter>Исходные файлы</Filter>
     </ClInclude>
   </ItemGroup>
