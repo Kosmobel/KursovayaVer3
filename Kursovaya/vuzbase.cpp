@@ -5,6 +5,7 @@
 #include "vuzbase.h"
 
 
+using namespace std;
 
 
 void vuzBase::run() {
@@ -23,6 +24,16 @@ void vuzBase::run() {
 	subMenu sortByAgeMenu("Сортировка по возрасту", false);
 	subMenu sortByEmailMenu("Сортировка по email", false);
 
+	menuItem addPersonItem("Добавить нового человека", false, [this]() {this->addPerson(); });
+	menuItem importFromCSV("Импорт из CSV", false, [this]() {this->importPerson(); });
+	menuItem showPersonList("Просмотреть список людей", false, [this]() {this->showPersonList(); });
+
+	//menuItem sortedById("Элементы списка отсортированные по Id", false, [this]() {this->sortById(); });
+
+
+	adminMenu.add_item(&addPersonItem);
+	adminMenu.add_item(&importFromCSV);
+
 	adminMenu.add_item(&findMenu);
 	sortMenu.add_item(&sortByIdMenu);
 	sortMenu.add_item(&sortByNameMenu);
@@ -37,6 +48,9 @@ void vuzBase::run() {
 	userMenu.add_item(&findMenu);
 	userMenu.add_item(&exportMenu);
 
+	adminMenu.add_item(&showPersonList);
+	userMenu.add_item(&showPersonList);
+
 	mainmenu.add_item(&adminMenu);
 	mainmenu.add_item(&userMenu);
 
@@ -45,5 +59,83 @@ void vuzBase::run() {
 
 }
 
-vuzBase::vuzBase() {}
-vuzBase::~vuzBase() {}
+vuzBase::vuzBase() {
+	personList = new LinkedList();
+	try {
+		personList->LoadFromFile(personBaseFile);
+	}
+	catch (exception& ex) {
+		cout << ex.what() << endl;
+	}
+}
+
+
+vuzBase::~vuzBase() {
+	try {
+		personList->SaveToFile(personBaseFile);
+	}
+	catch (exception& ex) {
+		cerr << ex.what() << endl;
+	}
+	personList->clear();
+	delete personList;
+}
+
+void vuzBase::addPerson() {
+	int idPerson, agePerson;
+	string namePerson, emailPerson, phonePerson, typePerson;
+	cout << "Введите порядковый номер: ";
+	cin >> idPerson;
+	cin.ignore(numeric_limits<streamsize>::max(), '\n');
+
+	cout << "Введите возраст: ";
+	cin >> agePerson;
+	cin.ignore(numeric_limits<streamsize>::max(), '\n');
+
+	cout << "Введите имя человека в формате Фамилия Имя Отчество: ";
+	getline(cin, namePerson);
+
+	cout << "Электронную почту человека: ";
+	getline(cin, emailPerson);
+
+	cout << "Введите номер телефона человека ";
+	getline(cin, phonePerson);
+
+	cout << "Укажите, этот человек студент или преподаватель: ";
+	getline(cin, typePerson);
+
+	person* personItem = new person(idPerson, agePerson, namePerson, emailPerson, phonePerson, typePerson);
+	personList->add(personItem);
+}
+
+void vuzBase::importPerson() {
+	string filename;
+	cout << "Введите путь к файлу: ";
+	cin >> filename;
+	cin.ignore(numeric_limits<streamsize>::max(), '\n');
+	try {
+		personList->LoadFromFile(filename);
+	}
+	catch (exception& ex) {
+		cout << ex.what() << endl;
+		getchar();
+	}
+}
+
+void vuzBase::showPersonList() {
+	this->printresult(personList);
+	getchar();
+}
+
+void vuzBase::printresult(LinkedList* personList) {
+	Node* current = personList->head;
+	while (current != nullptr) {
+		cout << current->data->getId() << ";"
+			<< current->data->getAge() << ";"
+			<< current->data->getName() << ";"
+			<< current->data->getEmail() << ";"
+			<< current->data->getPhone() << ";"
+			<< current->data->getType() << endl;
+		current = current->next;
+	}
+}

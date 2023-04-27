@@ -12,10 +12,10 @@
 using namespace std;
 int main()
 {
-    setlocale(LC_ALL, "rus");
-    vuzBase db1;
-    db1.run();
-    
+    setlocale(LC_ALL, "Russian");
+    vuzBase* db1 = new vuzBase();
+    db1->run();
+    //db1->~vuzBase();
 }
 
 // Запуск программы: CTRL+F5 или меню "Отладка" > "Запуск без отладки"

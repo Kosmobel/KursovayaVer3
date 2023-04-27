@@ -32,8 +32,8 @@ void menuItem::run() {
 		}
 	}
 	system("cls");
-	hr_dashed(40);
+	//hr_dashed(40);
 	cout << "\t\t" << title_ << endl;
-	hr(40);
+	//hr(40);
 	(action_)();
 }

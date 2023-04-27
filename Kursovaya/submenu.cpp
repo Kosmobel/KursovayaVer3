@@ -28,7 +28,7 @@ void subMenu::run() {
 		}
 	}
 	while (true) {
-		system("MODE CON COLS=70 LINES=22");
+		system("MODE CON COLS=100 LINES=22");
 		system("cls");
 		//system("Color F0");
 		starbar(70);
