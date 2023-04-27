@@ -29,12 +29,16 @@ void vuzBase::run() {
 	menuItem showPersonList("ѕросмотреть список людей", false, [this]() {this->showPersonList(); });
 
 	//menuItem sortedById("Ёлементы списка отсортированные по Id", false, [this]() {this->sortById(); });
+	menuItem sortedByAge("ќтсортировать людей по возрасту: ", false, [this]() {this->sortByAge(this->personList); });
 
 
 	adminMenu.add_item(&addPersonItem);
 	adminMenu.add_item(&importFromCSV);
 
 	adminMenu.add_item(&findMenu);
+
+	sortByAgeMenu.add_item(&sortedByAge);
+
 	sortMenu.add_item(&sortByIdMenu);
 	sortMenu.add_item(&sortByNameMenu);
 	sortMenu.add_item(&sortByAgeMenu);
@@ -138,4 +142,46 @@ void vuzBase::printresult(LinkedList* personList) {
 			<< current->data->getType() << endl;
 		current = current->next;
 	}
+}
+
+void vuzBase::sortByAge(LinkedList* personList) {
+	//Node* current = personList->head;
+	int size = 3;
+
+	Node* left = personList->head;
+	Node* right = personList->head->next;
+	
+	while (left->next) {                
+		while (right) {              
+			if ((left->data->getAge()) < (right->data->getAge())) {
+				Node* temp = left;              
+				left = right;           
+				right = temp;            
+			}
+			right = right->next;                   
+		}
+		left = left->next;                            
+		right = left->next;                            
+	}
+
+
+
+	/*while (current != nullptr) {
+		size++;
+		current = current->next;
+	}
+	for (int i = 0; i < size; i++) {
+		for (int j = 0; j < size; j++) {
+			if (begin->next != nullptr) {
+				if (begin->data->getAge() < begin->next->data->getAge()) {
+					Node* temp = begin->next;
+					begin = begin->next;
+					begin = temp;
+				}
+			}
+		}
+	}*/
+
+
+	this->showPersonList();
 }

@@ -25,5 +25,6 @@ private:
 	void showPersonList();
 	void printresult(LinkedList* vuzList);
 	//void sortById();
+	void sortByAge(LinkedList* vuzList);
 	const string personBaseFile = "personbase.csv";
 };
