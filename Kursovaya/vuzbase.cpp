@@ -22,7 +22,6 @@ void vuzBase::run() {
 
 	subMenu sortByIdMenu("Сортировка по Id", false);
 	subMenu sortByNameMenu("Сортировка по имени", false);
-	subMenu sortByAgeMenu("Сортировка по возрасту", false);
 	subMenu sortByEmailMenu("Сортировка по email", false);
 
 	menuItem addPersonItem("Добавить нового человека", false, [this]() {this->addPerson(); });
@@ -30,7 +29,7 @@ void vuzBase::run() {
 	menuItem showPersonList("Просмотреть список людей", false, [this]() {this->showPersonList(); });
 
 	//menuItem sortedById("Элементы списка отсортированные по Id", false, [this]() {this->sortById(); });
-	menuItem sortedByAge("Отсортировать людей по возрасту: ", false, [this]() {this->sortByAge(this->personList); });
+	menuItem sortByAge("Отсортировать людей по возрасту: ", false, [this]() {this->sortByAge(this->personList); });
 
 
 	adminMenu.add_item(&addPersonItem);
@@ -38,11 +37,10 @@ void vuzBase::run() {
 
 	adminMenu.add_item(&findMenu);
 
-	sortByAgeMenu.add_item(&sortedByAge);
 
 	sortMenu.add_item(&sortByIdMenu);
 	sortMenu.add_item(&sortByNameMenu);
-	sortMenu.add_item(&sortByAgeMenu);
+	sortMenu.add_item(&sortByAge);
 	sortMenu.add_item(&sortByEmailMenu);
 	adminMenu.add_item(&sortMenu);
 	adminMenu.add_item(&removeMenu);
