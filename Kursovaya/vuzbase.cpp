@@ -147,57 +147,24 @@ void vuzBase::printresult(LinkedList* personList) {
 
 void vuzBase::sortByAge(LinkedList* personList) {
 	Node* current = personList->head;
-	int size = 3;
-
-	Node* begin = personList->head;
-	Node* begin_temp = personList->head;
-	
-	/*while (left->next) {
-		while (right) {              
-			if ((left->data->getAge()) < (right->data->getAge())) {
-				Node* temp = left;              
-				left = right;           
-				right = temp;            
-			}
-			right = right->next;                   
-		}
-		left = left->next;                            
-		right = left->next;                            
-	}
-	while (current != nullptr) {
-		size++;
-		current = current->next;
-	}*/
+	int size = personList->getSize();
+	person* p = new person();
+	Node* temp = new Node(p);
 	for (int i = 0; i < size; i++) {
+		current = personList->head;
 		for (int j = 0; j < size; j++) {
-			if (begin->next != nullptr) {
-				if (begin->data->getAge() < begin->next->data->getAge()) {
-					Node* temp = begin;
-					begin->data = begin->next->data;
-					begin->next->data = temp->data;
-				}
+			if (current->next == nullptr) {
+				break;
 			}
-			begin->data = begin_temp->data;
+			if (current->data->getAge() < current->next->data->getAge()) {
+				temp->data = current->next->data;
+				current->next->data = current->data;
+				current->data = temp->data;
+			}
+			current = current->next;
 		}
 	}
-	/*bool swapped;
-	Node* left;
-	Node* right = nullptr;
-	Node* begin = personList->head;
-	do {
-		swapped = false;
-		left = begin;
-
-		while (left->next != right) {
-			if (begin->data->getAge() > begin->next->data->getAge()) {
-				Node* temp = left;
-				left = right;
-				right = temp;
-				swapped = 1;
-			}
-			left = left->next;
-		}
-		right = left;
-	} while (swapped);*/
+	
+	
 	this->showPersonList();
 }

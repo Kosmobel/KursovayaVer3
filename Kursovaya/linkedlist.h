@@ -12,6 +12,6 @@ public:
 	void add(person* p);
 	void LoadFromFile(string filename);
 	void SaveToFile(string filename);
-	int getSize() const;
+	int getSize();
 	Node* head;
 };

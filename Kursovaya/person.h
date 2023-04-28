@@ -5,7 +5,8 @@ using namespace std;
 
 class person {
 public:
-	person(int id, int age, string name, string email, string phoneNum, string type) : personId(id), personAge(age), personName(name), personEmail(email), personPhoneNum(phoneNum), personType(type) {};
+	person(int id, int age, string name, string email, string phoneNum, string type) : personId(id), personAge(age), personName(name), personEmail(email), personPhoneNum(phoneNum), personType(type) {}
+	person() : personId(-1), personAge(-1), personName("temp"), personEmail("temp"), personPhoneNum("temp"), personType("temp") {};
 	int getId() const { return personId; }
 	int getAge() const { return personAge; }
 	string getName() const { return personName; }
