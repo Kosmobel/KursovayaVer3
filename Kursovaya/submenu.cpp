@@ -28,21 +28,21 @@ void subMenu::run() {
 		}
 	}
 	while (true) {
-		system("MODE CON COLS=100 LINES=22");
+		system("MODE CON COLS=105 LINES=22");
 		system("cls");
 		//system("Color F0");
-		starbar(70);
+		starbar(105);
 		cout << "\n";
-		cout << GREEN << "Выберите действие: " << BLACK << endl;
+		cout << "Выберите действие: " << endl;
 
 		for (int i = 0; i < (int)items_.size(); i++) {
 			cout << i + 1 << ". " << items_[i]->getTitle() << (items_[i]->getProtected() ? "(*)" : "") << endl;
 		}
-		cout << "Введите номер (q для выхода): " << BLACK;
+		cout << "Введите номер (q для выхода): ";
 		string input;
 		cin >> input;
 		cin.ignore(100, '\n');
-		if (input == "q") break;
+		if (input == "q" || input == "й") break;
 		int choice = 0;
 		try {
 			choice = stoi(input);

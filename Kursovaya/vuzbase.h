@@ -24,7 +24,26 @@ private:
 	void importPerson();
 	void showPersonList();
 	void printresult(LinkedList* vuzList);
-	//void sortById();
+	void exportPerson();
+
+	//сортировки
+	void sortById(LinkedList* vuzList);
 	void sortByAge(LinkedList* vuzList);
+	void sortByName(LinkedList* vuzList);
+	void sortByType(LinkedList* vuzList);
+
+	//функции поиска
+	void findById(LinkedList* vuzList);
+	void findByAge(LinkedList* vuzList);
+	void findByName(LinkedList* vuzList);
+	void findByType(LinkedList* vuzList);
+
+	//функции удаления
+	void removeById(LinkedList* vuzList);
+	void removeByAge(LinkedList* vuzList);
+	void removeByName(LinkedList* vuzList);
+	void removeByType(LinkedList* vuzList);
+
+
 	const string personBaseFile = "personbase.csv";
 };
